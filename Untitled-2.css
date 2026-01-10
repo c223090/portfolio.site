@@ -484,7 +484,7 @@ body{
 /* トップタイトル文字（画像代替） */
 .hero-title{
   font-family: 'Great Vibes', cursive;
-  font-size: 96px;              /* 大きさ調整 */
+  font-size: 200px;              /* 大きさ調整 */
   font-weight: 400;
   color: #1f3d2b;               /* 深いグリーン（画像っぽい） */
   text-align: center;
@@ -498,6 +498,7 @@ body{
     font-size: 56px;
   }
 }
+
 
 
 
