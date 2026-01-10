@@ -1,0 +1,438 @@
+:root{
+  --cream: #f6eddc;
+  --cream-2: #f3e5cf;
+  --ink: #1a1a1a;
+  --muted: #5b5347;
+
+  --grid-line: rgba(0,0,0,0.08);
+  --grid-bold: rgba(0,0,0,0.12);
+
+  --paper: rgba(255,255,255,0.92);
+  --paper-line: rgba(0,0,0,0.10);
+
+  --radius: 10px;
+  --shadow: 0 10px 35px rgba(0,0,0,0.12);
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin: 0;
+  color: var(--ink);
+  font-family: "Noto Serif JP", ui-serif, Georgia, "Times New Roman", serif;
+  background:
+    /* うっすらベース */
+    linear-gradient(0deg, var(--cream), var(--cream)),
+
+    /* 方眼（細線） */
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+
+    /* 方眼（太線：少し間隔広め） */
+    linear-gradient(var(--grid-bold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-bold) 1px, transparent 1px);
+
+  background-size:
+    auto,
+    22px 22px,
+    22px 22px,
+    110px 110px,
+    110px 110px;
+
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+
+  min-height: 100vh;
+}
+
+/* 上部（タイトル画像エリア） */
+.site-header{
+  text-align: center;
+  padding: 34px 16px 10px;
+}
+
+.title-board{
+  width: min(980px, calc(100% - 48px));
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  box-shadow: var(--shadow);
+  border-radius: 0; /* スクショっぽく四角 */
+  padding: 18px;
+}
+
+.title-image{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.byline{
+  margin: 14px 0 0;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--ink);
+}
+
+/* ナビ（中央） */
+.menu{
+  width: min(980px, calc(100% - 48px));
+  margin: 22px auto 0;
+  background: rgba(255,255,255,0.75);
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  padding: 14px 10px;
+}
+
+.menu a{
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+.menu a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--ink);
+  transition: width .18s ease;
+  opacity: .8;
+}
+.menu a:hover::after{
+  width: 100%;
+}
+
+/* 中身 */
+.container{
+  width: min(980px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 28px 0 70px;
+}
+
+.panel{
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  box-shadow: var(--shadow);
+  padding: 26px;
+  margin-top: 28px;
+}
+
+.panel-title{
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.panel-text{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+/* スクショの “筆記体っぽい見出し” 風 */
+.center-script{
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 44px;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+/* ギャラリー */
+.gallery-grid{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 980px){
+  .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .gallery-grid{ grid-template-columns: 1fr; }
+}
+
+/* 作品カード（画像そのもの） */
+.card{
+  display: block;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.10);
+  transform: translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card img{
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform .35s ease;
+}
+
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.16);
+}
+.card:hover img{
+  transform: scale(1.06);
+}
+
+/* ホバー時の薄い暗幕（説明が読みやすくなる） */
+.card .hint{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0));
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.card:hover .hint{
+  opacity: 1;
+}
+
+/* Contact */
+.contact-box{
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+.row{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px;
+  border: 1px dashed rgba(0,0,0,0.22);
+  background: rgba(255,255,255,0.80);
+}
+.label{
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+.value{
+  font-weight: 700;
+}
+
+/* フッター */
+.footer{
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+}
+
+/* tooltip（ホバー説明） */
+.tooltip{
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-9999px, -9999px);
+  width: min(320px, calc(100vw - 24px));
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.18);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.20);
+  padding: 12px 12px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.tooltip-title{
+  margin: 0 0 6px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.tooltip-desc{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+/* 動きを苦手な人向け */
+@media (prefers-reduced-motion: reduce){
+  .card, .card img, .menu a::after{ transition: none; }
+}
+
+body{
+  margin: 0;
+  color: #1a1a1a;
+  font-family: "Noto Serif JP", ui-serif, Georgia, "Times New Roman", serif;
+
+  /* クリーム色ベース */
+  background-color: #f6eddc;
+
+  /* 方眼（すべて同じ太さ） */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.12) 1px, transparent 1px);
+
+  /* マスの大きさ */
+  background-size: 28px 28px;
+
+  background-position: 0 0;
+  min-height: 100vh;
+}
+
+/* Thanks section */
+.thanks{
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.thanks-text{
+  margin: 0;
+  font-size: 20px;
+  font-style: italic;
+  color: #1a1a1a;
+  letter-spacing: 0.02em;
+}
+/* =========================
+   work-4: university life
+   ========================= */
+
+.life{
+  padding-top: 22px;
+}
+
+/* セクション全体：左右交互 */
+.life-section{
+  margin-top: 34px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  padding: 26px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 22px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.life-section.left{
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.life-text{
+  max-width: 520px;
+}
+
+.life-title{
+  margin: 0 0 10px;
+  font-size: 26px;
+  letter-spacing: 0.01em;
+}
+
+.life-desc{
+  margin: 0;
+  color: #5b5347;
+  line-height: 1.95;
+  font-size: 16px;
+}
+
+/* スマホでは縦並び */
+@media (max-width: 980px){
+  .life-section,
+  .life-section.left{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* チェキ風フレーム */
+.polaroid{
+  margin: 0;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.14);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.16);
+  padding: 12px 12px 34px; /* 下を広く＝チェキっぽい */
+  width: min(320px, 100%);
+  transform-origin: center;
+}
+
+.polaroid img{
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid figcaption{
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.55);
+  letter-spacing: 0.06em;
+}
+
+/* 2枚を扇形に：重なり＋斜め＋浮いて見える */
+.fan{
+  position: relative;
+  height: 290px; /* 写真2枚ぶんの余白 */
+  display: grid;
+  place-items: center;
+}
+
+.fan .p1{
+  position: absolute;
+  z-index: 2;
+  transform: rotate(-6deg) translateY(-6px);
+}
+
+.fan .p2{
+  position: absolute;
+  z-index: 1;
+  transform: rotate(6deg) translateY(8px);
+  filter: saturate(0.98);
+}
+
+/* 右寄せのとき：右側に扇 */
+.fan-right .p1{ right: 1px; }
+.fan-right .p2{ right: 200px; }
+
+/* 左寄せのとき：左側に扇 */
+.fan-left .p1{ left: 1px; }
+.fan-left .p2{ left: 200px; }
+
+/* ホバーでふわっと持ち上げ */
+.fan .polaroid{
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.fan:hover .p1{
+  transform: rotate(-9deg) translateY(-14px);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+}
+.fan:hover .p2{
+  transform: rotate(9deg) translateY(2px);
+}
+
+/* スクロールで出現（ふわっ） */
+.reveal-life{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-life.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 動きが苦手な人向け */
+@media (prefers-reduced-motion: reduce){
+  .reveal-life{ transition: none; }
+  .fan .polaroid{ transition: none; }
+}
+
