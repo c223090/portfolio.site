@@ -481,6 +481,16 @@ body{
 .life-section.left .life-text{
   justify-self: end;
 }
+/* index.html トップのタイトル画像用 */
+.hero-image{
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+
 
 
 
