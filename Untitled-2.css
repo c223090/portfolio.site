@@ -484,11 +484,12 @@ body{
 /* index.html トップのタイトル画像用 */
 .hero-image{
   width: 100%;
-  max-width: 400px;
+  max-width: 100px;
   height: auto;
   margin: 0 auto;
   display: block;
 }
+
 
 
 
