@@ -436,3 +436,28 @@ body{
   .fan .polaroid{ transition: none; }
 }
 
+/* ===== work-4 左配置時の文字かぶり対策 ===== */
+
+.life-text{
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.life-photos{
+  position: relative;
+  z-index: 1;
+  min-width: 360px;
+}
+
+.life-section.left .life-photos{
+  justify-self: start;
+  margin-right: 10px;
+}
+
+.life-section.left .life-text{
+  justify-self: end;
+}
+
+
+
