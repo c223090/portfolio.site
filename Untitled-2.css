@@ -481,13 +481,22 @@ body{
 .life-section.left .life-text{
   justify-self: end;
 }
-/* index.html トップのタイトル画像用 */
-.hero-image{
-  width: 50%;
-  max-width: 50px;
-  height: auto;
-  margin: 0 auto;
-  display: block;
+/* トップタイトル文字（画像代替） */
+.hero-title{
+  font-family: 'Great Vibes', cursive;
+  font-size: 96px;              /* 大きさ調整 */
+  font-weight: 400;
+  color: #1f3d2b;               /* 深いグリーン（画像っぽい） */
+  text-align: center;
+  margin: 10px 0 0;
+  letter-spacing: 0.02em;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px){
+  .hero-title{
+    font-size: 56px;
+  }
 }
 
 
